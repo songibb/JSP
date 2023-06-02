@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.micol.notice.service.NoticeMapper">  <!-- co/micol/notice/service/NoticeMapper.xml 이 형태로 mybatis-config에 <mapper resource=""> 안에 넣어주기 -->
+
+	<!-- mybatis에서 el표현식은 #{} -->
+
+	<!-- id: mybatis 사용을 위한 인터페이스의 메소드명과 일치 -->
+	<!-- parameterType: 메소드의 매개변수  -->
+	<!-- resultType: 돌려줄 타입, select는 반드시 필요하나 insert나 update나 delete는 int로 돌려주므로 필요 없음 -->
+	<select id="noticeSelectList" resultType="co.micol.notice.service.NoticeVO">  <!-- noticeVO라는 타입의 리스트를 받으므로 NoticeVO -->
+		SELECT * FROM NOTICE
+	</select>		
+	
+	<select id="noticeSelect" 
+		parameterType = "co.micol.notice.service.NoticeVO"    
+		resultType="co.micol.notice.service.NoticeVO">
+		SELECT * FROM NOTICE
+		WHERE NOTICE_ID = #{noticeId}
+	</select>
+	
+	<insert id="noticeInsert" parameterType = "co.micol.notice.service.NoticeVO">
+		INSERT INTO NOTICE
+		VALUES(#{noticeId}, #{noticeWriter}, #{noticeTitle}, #{noticeSubject}, #{noticeWdate}, 0)
+	</insert>
+	
+	<update id="noticeUpdate">
+	
+	</update>
+	
+	<delete id="noticeDelete">
+		DELETE FROM NOTICE
+		WHERE NOTICE_ID = #{noticeID}
+	</delete>
+	
+</mapper>

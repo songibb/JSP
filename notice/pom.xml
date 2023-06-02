@@ -50,6 +50,15 @@
   
   <!-- compile or build option definition -->
   <build>
+  
+    <!-- 컴파일하거나 빌딩할때 resource파일이 어딨는지 알려주는 것 -->
+  	<resources>
+  		<resource>
+  			<directory>src/main/resources</directory>
+  		</resource>
+  	</resources>
+  	
+  	
   	<plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
