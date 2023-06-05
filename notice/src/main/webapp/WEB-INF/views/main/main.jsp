@@ -7,10 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	 <div align="center">
-	 	<h1>Welcome to My Home</h1>
-	 	<a href="noticeList.do">게시글 목록</a><br>
-	 	<a href="memberList.do">멤버 목록</a>
+	<div align="center">
+		<div>
+			<jsp:include page="menu.jsp"></jsp:include>
+		</div> 
+	 
+		 <div>
+		 	<h1>Welcome to My Home</h1>
+		 </div>
+		 
+		 <div>
+			<jsp:include page="footer.jsp"></jsp:include>
+		</div>
+
 	</div>
 	
 	

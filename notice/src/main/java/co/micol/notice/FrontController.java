@@ -15,7 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import co.micol.notice.command.NoticeList;
 import co.micol.notice.common.Command;
 import co.micol.notice.main.command.MainCommand;
+import co.micol.notice.member.command.AjaxCheckId;
+import co.micol.notice.member.command.MemberInsert;
+import co.micol.notice.member.command.MemberJoin;
 import co.micol.notice.member.command.MemberList;
+import co.micol.notice.member.command.MemberLogin;
+import co.micol.notice.member.command.MemberLoginForm;
 
 /**
  * Servlet implementation class FrontController
@@ -41,7 +46,11 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new MainCommand()); //처음 들어오는 페이지를 돌려준다.
 		map.put("/noticeList.do", new NoticeList());  //게시글 목록보기
 		map.put("/memberList.do", new MemberList());  //멤버 목록 보기
-		
+		map.put("/memberJoin.do", new MemberJoin());  //회원가입 화면 호출
+		map.put("/memberInsert.do", new MemberInsert()); //회원가입 수행
+		map.put("/ajaxCheckId.do", new AjaxCheckId());  //아이디 중복체크
+		map.put("/memberLoginForm.do", new MemberLoginForm());  //로그인 폼 호출
+		map.put("/memberLogin.do", new MemberLogin());  //로그인 처리
 	}
 
 	/**
@@ -63,15 +72,22 @@ public class FrontController extends HttpServlet {
 		
 		//viewPage를 사용자에게 보내주기
 		if(!viewPage.endsWith(".do")) {    //.do로 끝나는게 아닐 때
+			
+			//view resolve
+			if(viewPage.startsWith("Ajax:")) {  //Ajax: 를 붙여서 오면 호출한 페이지에서
+				response.setContentType("text/html; charset=UTF-8");
+				response.getWriter().append(viewPage.substring(5));  //getWriter() -> 페이지에 출력
+				return;
+			}
+			
 			viewPage = "WEB-INF/views/" + viewPage + ".jsp";
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);   //request, response를 실어서 줌
 		} else {   //.do로 끝나는게 들어왔을 때
 			response.sendRedirect(viewPage);   //객체를 안싣고 위임
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-		dispatcher.forward(request, response);   //request, response를 실어서 줌
-		
-
 //		forward, sendRedirect : 처음에 위임받은 request객체는 안가져오고 response만 전송 
 //		dispatcher : 처음에 위임받은 request객체를 들고와서 request,response 같이 전송 
 	}

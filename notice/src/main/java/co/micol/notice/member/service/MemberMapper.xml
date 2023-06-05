@@ -10,12 +10,19 @@
 		WHERE MEMBER_ID = #{memberId}
 	</select>
 	
-	<select id="memberInsert">
-	</select>
+	<insert id="memberInsert">
+		INSERT INTO MEMBER
+		VALUES (#{memberId}, #{memberPassword}, #{memberName}, #{memberAge}, #{memberTel}, #{memberGender})
+	</insert>
 	
-	<select id="memberUpdate">
-	</select>
+	<update id="memberUpdate">
+	</update>
 	
-	<select id="memberDelete">
+	<delete id="memberDelete">
+	</delete>
+	
+	<select id="memberLogin" resultType="co.micol.notice.member.service.MemberVO">
+		SELECT * FROM MEMBER
+		WHERE MEMBER_ID = #{memberId} AND MEMBER_PASSWORD = #{memberPassword}
 	</select>
 </mapper>
