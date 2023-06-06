@@ -15,8 +15,6 @@
 		<div><h1>회원가입</h1></div>
 		<div>
 			<form id="frm" action="memberInsert.do" onsubmit="return formCheck()" method="post">
-			<!-- method="post": 폼객체에 말아서 전달에서 보안상 안전 -->
-			<!-- method="get": 변수명.data 형식으로 전달 -->
 			
 				<div>
 					<table border="1">
