@@ -88,8 +88,6 @@ public class FrontController extends HttpServlet {
 			response.sendRedirect(viewPage);   //객체를 안싣고 위임
 		}
 		
-//		forward, sendRedirect : 처음에 위임받은 request객체는 안가져오고 response만 전송 
-//		dispatcher : 처음에 위임받은 request객체를 들고와서 request,response 같이 전송 
 	}
 
 }
