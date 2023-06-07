@@ -24,6 +24,7 @@ public class AjaxCheckId implements Command {
 			str += "Yes";
 		}
 		return str;
+
 	}
 	
 

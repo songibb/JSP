@@ -12,11 +12,15 @@
 			<jsp:include page="menu.jsp"></jsp:include>
 		</div> 
 	 
-		 <div>
+		<div>
 		 	<h1>Welcome to My Home</h1>
-		 </div>
+		</div>
+		
+		<div>
+			<img alt="배경화면" src="img/myhome.jpg" width="600" height="500">
+		</div>
 		 
-		 <div>
+		<div>
 			<jsp:include page="footer.jsp"></jsp:include>
 		</div>
 

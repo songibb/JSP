@@ -71,10 +71,11 @@
 				</div>
 			</form>
 		</div>
-		<div>
-			<jsp:include page="../main/footer.jsp"></jsp:include>
-		</div>
 	</div>
+	<div align="center">
+		<jsp:include page="../main/footer.jsp"></jsp:include>
+	</div>	
+	
 	<script type="text/javascript">
 		function formCheck(){
 			let frm = document.getElementById("frm");
@@ -95,7 +96,8 @@
 		function idCheck(){
 			let id = document.getElementById("memberId").value;  
 			let url = "ajaxCheckId.do?id=" + id;			
-			fetch(url)   //ajax 호출, get방식 생략가능  -> ajax 동작
+			fetch(url)   //ajax 호출, get방식 생략가능  -> ajax 동작 
+				//.then()으로 결과를 받는ㄴ다
 				.then(response => response.text())
 				
 				.then(text => htmlProcess(text));

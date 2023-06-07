@@ -8,7 +8,7 @@
 	<!-- parameterType: 메소드의 매개변수  -->
 	<!-- resultType: 돌려줄 타입, select는 반드시 필요하나 insert나 update나 delete는 int로 돌려주므로 필요 없음 -->
 	<select id="noticeSelectList" resultType="co.micol.notice.service.NoticeVO">  <!-- noticeVO라는 타입의 리스트를 받으므로 NoticeVO -->
-		SELECT * FROM NOTICE
+		SELECT * FROM NOTICE ORDER BY NOTICE_ID DESC
 	</select>		
 	
 	<select id="noticeSelect" 
@@ -19,17 +19,28 @@
 	</select>
 	
 	<insert id="noticeInsert" parameterType = "co.micol.notice.service.NoticeVO">
+		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">  <!-- before: insert 구문 시행전에 동작 -->
+			SELECT NVL(MAX(NOTICE_ID),0)+1 AS noticeId FROM NOTICE
+		</selectKey>
 		INSERT INTO NOTICE
 		VALUES(#{noticeId}, #{noticeWriter}, #{noticeTitle}, #{noticeSubject}, #{noticeWdate}, 0)
 	</insert>
 	
-	<update id="noticeUpdate">
-	
+	<!-- parameterType은 int 하나, String 하나 이런 값이면 반드시 넣어야하고, VO객체는 안넣어도 상관없음 -->
+	<update id="noticeUpdate" parameterType = "co.micol.notice.service.NoticeVO">
+		UPDATE NOTICE
+		<set> 
+			<if test="noticeWriter != null">NOTICE_WRITER = #{noticeWriter},</if>
+			<if test="noticeTitle != null">NOTICE_TITLE = #{noticeTitle},</if>
+			<if test="noticeSubject != null">NOTICE_SUBJECT = #{noticeSubject},</if>
+			<if test="noticeWdate != null">NOTICE_WDATE = #{noticeWdate}</if>
+		</set>
+		WHERE NOTICE_ID = #{noticeId}
 	</update>
 	
-	<delete id="noticeDelete">
+	<delete id="noticeDelete" parameterType = "co.micol.notice.service.NoticeVO">
 		DELETE FROM NOTICE
-		WHERE NOTICE_ID = #{noticeID}
+		WHERE NOTICE_ID = #{noticeId}
 	</delete>
 	
 </mapper>

@@ -8,6 +8,13 @@
 	<select id="memberSelect" resultType="co.micol.notice.member.service.MemberVO">
 		SELECT * FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
+		
+<!-- 	memberId만 들어오면 위에까지만 쿼리 실행.  -->
+<!-- 	memberId와 memberPassword 같이 들어오면 아래 if문 실행  -->
+<!-- 	그럼 맨 아래 <select id="memberLogin"> sql이 필요없어짐 -->
+		<if test="memberPassword != null">
+			AND MEMBER_PASSWORD = #{memberPassword}
+		</if>		
 	</select>
 	
 	<insert id="memberInsert">

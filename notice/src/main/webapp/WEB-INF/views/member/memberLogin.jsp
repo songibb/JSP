@@ -38,6 +38,9 @@
 			</form>
 		</div>
 	</div>
+	<div align="center">
+		<jsp:include page="../main/footer.jsp"></jsp:include>
+	</div>	
 	
 </body>
 </html>
