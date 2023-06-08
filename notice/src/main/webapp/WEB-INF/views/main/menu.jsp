@@ -18,7 +18,7 @@
 				<li><a href="memberJoin.do">MemberJoin</a>
 			</c:if>		
 			<li><a href="memberList.do">Member</a></li>
-			<li><a href="#">보류</a></li>		
+			<li><a href="productList.do">제품관리</a></li>		
 			<li><a href="#">보류</a></li>
 			<c:if test="${empty id}">
 				<li><a href="memberLoginForm.do">Login</a></li>

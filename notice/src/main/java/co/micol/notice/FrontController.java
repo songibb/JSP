@@ -28,6 +28,8 @@ import co.micol.notice.member.command.MemberList;
 import co.micol.notice.member.command.MemberLogin;
 import co.micol.notice.member.command.MemberLoginForm;
 import co.micol.notice.member.command.MemberLogout;
+import co.micol.notice.product.command.ProductInsertForm;
+import co.micol.notice.product.command.ProductList;
 
 /**
  * Servlet implementation class FrontController
@@ -68,6 +70,9 @@ public class FrontController extends HttpServlet {
 		map.put("/memberLogin.do", new MemberLogin());  //로그인 처리
 		map.put("/memberLogout.do", new MemberLogout());
 		
+		map.put("/productList.do", new ProductList()); //제품 목록 보기
+		map.put("/productInsertForm.do", new ProductInsertForm());  //제품 등록 폼 호출
+		map.put("/productInsert.do", new ProductInsert());  //제품 등록
 	}
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)

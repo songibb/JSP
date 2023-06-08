@@ -17,7 +17,7 @@
 		</div>
 		
 		<div>
-			<img alt="배경화면" src="img/myhome.jpg" width="600" height="500">
+			<img alt="배경화면" src="img/img.gif" width="600" height="500">
 		</div>
 		 
 		<div>
